@@ -26,20 +26,21 @@ public class Curso implements Serializable {
     // entidades
     
     private String nome;
-    private int quantidade;
+    private int duracao;
     private String descricao;
-    private String fornecedor;
+    private String plataforma;
 
     // construtores
     public Curso() {
     }
 
-    public Curso(String nome, int quantidade, String descricao, String fornecedor) {
+    public Curso(Long id, String nome, int duracao, String descricao, String plataforma) {
+        this.id = id;
         this.nome = nome;
-        this.quantidade = quantidade;
+        this.duracao = duracao;
         this.descricao = descricao;
-        this.fornecedor = fornecedor;
-    }  
+        this.plataforma = plataforma;
+    }
 
     public Long getId() {
         return id;
@@ -57,12 +58,12 @@ public class Curso implements Serializable {
         this.nome = nome;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public int getDuracao() {
+        return duracao;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
     }
 
     public String getDescricao() {
@@ -73,21 +74,15 @@ public class Curso implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getFornecedor() {
-        return fornecedor;
+    public String getPlataforma() {
+        return plataforma;
     }
 
-    public void setFornecedor(String fornecedor) {
-        this.fornecedor = fornecedor;
+    public void setPlataforma(String plataforma) {
+        this.plataforma = plataforma;
     }
-   
-    public String toString(){
-        return "Curso{" +
-               "id=" + id +
-               ", nome='" + nome + '\'' +
-               ", quantidade=" + quantidade +
-               ", descricao='" + descricao + '\'' +
-               ", fornecedor='" + fornecedor + '\'' +
-               '}';
-    }
+
+    
+
+    
 }

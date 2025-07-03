@@ -20,9 +20,11 @@ public class CursoLista extends javax.swing.JFrame {
     public CursoLista() {
         initComponents();
         
-       popularTabelaComDados();
+        popularTabelaComDados();
         adicionarIconesNasColunas();
         adicionarListenerTabela();
+        configurarRenderizadoresDeIcones();
+
     }
     
     // metados com tabelas reais
@@ -46,8 +48,8 @@ public class CursoLista extends javax.swing.JFrame {
     private void adicionarIconesNasColunas() {
         DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
         for (int i = 0; i < modelo.getRowCount(); i++) {
-            modelo.setValueAt(new ImageIcon(getClass().getResource("/br/com/ifba/imagens/remover.png")), i, 4);
-            modelo.setValueAt(new ImageIcon(getClass().getResource("/br/com/ifba/imagens/editar.png")), i, 5);
+            modelo.setValueAt(new ImageIcon(getClass().getResource("/br/com/ifba/imagens/remover.png.png")), i, 4);
+            modelo.setValueAt(new ImageIcon(getClass().getResource("/br/com/ifba/imagens/editar.png.png")), i, 5);
         }
     }
     
@@ -59,17 +61,57 @@ public class CursoLista extends javax.swing.JFrame {
                 int coluna = tabCurso.columnAtPoint(evt.getPoint());
 
                 if (coluna == 4) { // REMOVER
-                    int confirmacao = JOptionPane.showConfirmDialog(null, "deseja excluir esse curso", "confirmacao", JOptionPane.YES_NO_OPTION);
+                    int confirmacao = JOptionPane.showConfirmDialog(null, "deseja excluir esse curso?", "confirmacao", JOptionPane.YES_NO_OPTION);
                     if (confirmacao == JOptionPane.YES_OPTION) {
                         ((DefaultTableModel) tabCurso.getModel()).removeRow(linha);
                     }
                 } else if (coluna == 5) { // EDITAR
-                    JOptionPane.showMessageDialog(null, "abrir a tela para editar curso");
+                    
+                    String nome = tabCurso.getValueAt(linha, 0).toString();
+                    int  duracao = Integer.parseInt(tabCurso.getValueAt(linha, 1).toString());
+                    String descricao = tabCurso.getValueAt(linha, 2).toString();
+                    String plataforma = tabCurso.getValueAt(linha, 3).toString();
+                    
+                   EditarCurso telaEdicao = new EditarCurso(CursoLista.this, linha, nome, duracao, descricao, plataforma);
+                   telaEdicao.setVisible(true);
                 }
             }
         });
     
     }
+    
+    // metodo para configurar os icones nas coluna da tabela
+    private void configurarRenderizadoresDeIcones() {
+        
+    // configurando a coluna de remover
+    tabCurso.getColumnModel().getColumn(4).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
+        @Override
+        public void setValue(Object value) {
+            if (value instanceof ImageIcon imageIcon) {
+                setIcon(imageIcon);
+                setText("");
+            } else {
+                setIcon(null);
+                setText("");
+            }
+        }
+    });
+
+    // configurando a coluna de editar
+    tabCurso.getColumnModel().getColumn(5).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
+        @Override
+        public void setValue(Object value) {
+            if (value instanceof ImageIcon imageIcon) {
+                setIcon(imageIcon);
+                setText("");
+            } else {
+                setIcon(null);
+                setText("");
+            }
+        }
+    });
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,12 +132,11 @@ public class CursoLista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Cursos");
 
-        painelSuperior.setBackground(new java.awt.Color(0, 102, 153));
+        painelSuperior.setBackground(new java.awt.Color(255, 204, 204));
 
-        txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        txtBuscar.setText("procurar...");
+        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtButao.setForeground(new java.awt.Color(255, 255, 255));
+        txtButao.setForeground(new java.awt.Color(0, 0, 0));
         txtButao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/pesquisa-de-lupa (1).png"))); // NOI18N
         txtButao.setText("CLIQUE NO BUTAO");
         txtButao.addActionListener(new java.awt.event.ActionListener() {
@@ -104,8 +145,11 @@ public class CursoLista extends javax.swing.JFrame {
             }
         });
 
-        lblHomemCrem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagem/perfil-de-usuario.png"))); // NOI18N
+        lblHomemCrem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/perfil-de-usuario.png"))); // NOI18N
 
+        tabelaCurso.setBorder(new javax.swing.border.MatteBorder(null));
+
+        tabCurso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tabCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -114,7 +158,7 @@ public class CursoLista extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "home", "quantidade", "descricao", "fornecedor", "remover", "editar"
+                "CURSO", "DURACAO", "DESCRICAO", "PLATAFORMA", "REMOVER", "EDITAR"
             }
         ) {
             Class[] types = new Class [] {
@@ -141,29 +185,28 @@ public class CursoLista extends javax.swing.JFrame {
             .addGroup(painelSuperiorLayout.createSequentialGroup()
                 .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelSuperiorLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(45, 45, 45)
                         .addComponent(lblHomemCrem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(txtButao, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(97, 97, 97)
+                        .addComponent(txtButao))
                     .addGroup(painelSuperiorLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(18, 18, 18)
                         .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(522, Short.MAX_VALUE))
         );
         painelSuperiorLayout.setVerticalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(31, 31, 31)
                 .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblHomemCrem)
-                    .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtButao)))
-                .addGap(18, 18, 18)
+                    .addComponent(txtButao)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(67, 67, 67)
                 .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addGap(192, 192, 192))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,8 +229,33 @@ public class CursoLista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // botao com os seus comandos
     private void txtButaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtButaoActionPerformed
-        // TODO add your handling code here:
+        
+    String textoBusca = txtBuscar.getText().toLowerCase(); // texto digitado na busca
+    DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
+    modelo.setRowCount(0); // limpa a tabela antes de filtrar
+
+    // dados
+    Object[][] dados = {
+        {"Java Básico", 30, "Curso introdutório de Java", "IFBA"},
+        {"Python Avançado", 25, "Curso avançado de Python", "Udemy"},
+        {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera"}
+    };
+
+    for (Object[] curso : dados) {
+        String nomeCurso = curso[0].toString().toLowerCase();
+        if (nomeCurso.contains(textoBusca)) {
+            // adiciona novamente as colunas de remover e editar com null
+            Object[] linhaComIcones = {
+                curso[0], curso[1], curso[2], curso[3], null, null
+            };
+            modelo.addRow(linhaComIcones);
+        }
+    }
+
+    // aecoloca os icones nas colunas
+    adicionarIconesNasColunas();
     }//GEN-LAST:event_txtButaoActionPerformed
 
     /**
@@ -223,6 +291,17 @@ public class CursoLista extends javax.swing.JFrame {
             new CursoLista().setVisible(true);
         });
     }
+    
+    
+    // esse metado atualizara a tabela com as novas informacao
+    public void atualizarCurso(int linha, String nome, int duracao, String descricao, String plataforma) {
+    DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
+    modelo.setValueAt(nome, linha, 0);
+    modelo.setValueAt(duracao, linha, 1);
+    modelo.setValueAt(descricao, linha, 2);
+    modelo.setValueAt(plataforma, linha, 3);
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblHomemCrem;
