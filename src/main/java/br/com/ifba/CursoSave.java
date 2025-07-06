@@ -4,8 +4,10 @@
 
 package br.com.ifba;
 
-import br.com.ifba.dao.CursoDAO;
-import br.com.ifba.entity.Curso;
+import br.com.ifba.curso.dao.CursoDAO;
+import br.com.ifba.curso.dao.CursoDAOImpl;
+import br.com.ifba.curso.entity.Curso;
+import java.util.List;
 
 /**
  *
@@ -14,17 +16,35 @@ import br.com.ifba.entity.Curso;
 public class CursoSave {
 
     public static void main(String[] args) {
-        System.out.println("curso salvo");
-        
-        CursoDAO dao = new CursoDAO();
+      CursoDAO dao = new CursoDAOImpl();
 
-    Curso c = new Curso();
-    c.setNome("Teste Curso");
-    c.setDuracao(10);
-    c.setDescricao("Curso de Teste");
-    c.setPlataforma("Online");
+        // criar e salvar novo curso
+        Curso novoCurso = new Curso();
+        novoCurso.setNome("curso java");
+        novoCurso.setDescricao("curso java completo");
+        dao.salvar(novoCurso);
+        System.out.println("curso salvo com ID: " + novoCurso.getId());
 
-    dao.salvar(c);
-    System.out.println("Curso salvo com id: " + c.getId());
+        // listar todos os cursos
+        List<Curso> cursos = dao.listarTodos();
+        System.out.println("\n-----lista de cursos----");
+        for (Curso c : cursos) {
+            System.out.println("ID: " + c.getId() + " | nome: " + c.getNome());
+        }
+
+        // buscar curso por ID
+        Curso curso = dao.buscarPorId(novoCurso.getId());
+        if (curso != null) {
+            System.out.println("\ncurso encontrado " + curso.getNome());
+        }
+
+        // atualizar curso
+        curso.setNome("curso java avancado");
+        dao.atualizar(curso);
+        System.out.println("curso atualizado");
+
+        // excluir curso
+        dao.excluir(curso);
+        System.out.println("curso excluido");
     }
 }

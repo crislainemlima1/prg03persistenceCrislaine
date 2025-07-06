@@ -1,8 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package br.com.ifba.entity;
+package br.com.ifba.curso.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -42,6 +42,7 @@ public class Curso implements Serializable {
         this.plataforma = plataforma;
     }
 
+    // os gettes e settes
     public Long getId() {
         return id;
     }

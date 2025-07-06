@@ -34,10 +34,23 @@ public class CursoLista extends javax.swing.JFrame {
         
         // exemplo de dados reais
         Object[][] dados = {
-            {"Java Básico", 30, "Curso introdutório de Java", "IFBA", null, null},
-            {"Python Avançado", 25, "Curso avançado de Python", "Udemy", null, null},
-            {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera", null, null}
-        };
+    {"Java Básico", 30, "Curso introdutório de Java", "IFBA"},
+    {"Python Avançado", 25, "Curso avançado de Python", "Udemy"},
+    {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera"},
+    {"Desenvolvimento Web", 40, "HTML, CSS e JavaScript", "Alura"},
+    {"Estrutura de Dados", 35, "Listas, pilhas, filas e árvores", "IFBA"},
+    {"Java com Spring", 45, "Desenvolvimento de APIs com Spring Boot", "Digital Innovation One"},
+    {"JavaScript Moderno", 30, "ES6+ e boas práticas", "Rocketseat"},
+    {"React para Iniciantes", 25, "Componentes, Props e Hooks", "Origamid"},
+    {"C++ Intermediário", 28, "Programação orientada a objetos", "Udemy"},
+    {"Algoritmos", 32, "Lógica de programação e resolução de problemas", "IFBA"},
+    {"Linux Básico", 15, "Comandos e uso do terminal", "Curso em Vídeo"},
+    {"Engenharia de Software", 38, "Requisitos, modelagem e testes", "IFBA"},
+    {"Git e GitHub", 10, "Controle de versão com Git", "Digital Innovation One"},
+    {"Redes de Computadores", 30, "Fundamentos de redes", "Cisco Networking Academy"},
+    {"Segurança da Informação", 22, "Princípios básicos de segurança", "Coursera"}
+};
+
         
         for (Object[] linha : dados) {
             modelo.addRow(linha);
@@ -132,13 +145,13 @@ public class CursoLista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Cursos");
 
-        painelSuperior.setBackground(new java.awt.Color(255, 204, 204));
+        painelSuperior.setBackground(new java.awt.Color(255, 102, 102));
 
         txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
 
         txtButao.setForeground(new java.awt.Color(0, 0, 0));
         txtButao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/pesquisa-de-lupa (1).png"))); // NOI18N
-        txtButao.setText("CLIQUE NO BUTAO");
+        txtButao.setText("Buscar...");
         txtButao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtButaoActionPerformed(evt);
@@ -147,9 +160,13 @@ public class CursoLista extends javax.swing.JFrame {
 
         lblHomemCrem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/perfil-de-usuario.png"))); // NOI18N
 
+        tabelaCurso.setBackground(new java.awt.Color(255, 204, 204));
         tabelaCurso.setBorder(new javax.swing.border.MatteBorder(null));
+        tabelaCurso.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tabelaCurso.setFont(new java.awt.Font("Century Schoolbook", 1, 12)); // NOI18N
 
-        tabCurso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tabCurso.setBackground(new java.awt.Color(255, 204, 204));
+        tabCurso.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         tabCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -183,30 +200,32 @@ public class CursoLista extends javax.swing.JFrame {
         painelSuperiorLayout.setHorizontalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelSuperiorLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(lblHomemCrem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(txtButao))
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(painelSuperiorLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(522, Short.MAX_VALUE))
+                        .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelSuperiorLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(lblHomemCrem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtButao)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         painelSuperiorLayout.setVerticalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblHomemCrem)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSuperiorLayout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtButao)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(67, 67, 67)
-                .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(192, 192, 192))
+                    .addGroup(painelSuperiorLayout.createSequentialGroup()
+                        .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHomemCrem, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(195, 195, 195))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,8 +233,8 @@ public class CursoLista extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -237,11 +256,24 @@ public class CursoLista extends javax.swing.JFrame {
     modelo.setRowCount(0); // limpa a tabela antes de filtrar
 
     // dados
-    Object[][] dados = {
-        {"Java Básico", 30, "Curso introdutório de Java", "IFBA"},
-        {"Python Avançado", 25, "Curso avançado de Python", "Udemy"},
-        {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera"}
-    };
+   Object[][] dados = {
+    {"Java Básico", 30, "Curso introdutório de Java", "IFBA"},
+    {"Python Avançado", 25, "Curso avançado de Python", "Udemy"},
+    {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera"},
+    {"Desenvolvimento Web", 40, "HTML, CSS e JavaScript", "Alura"},
+    {"Estrutura de Dados", 35, "Listas, pilhas, filas e árvores", "IFBA"},
+    {"Java com Spring", 45, "Desenvolvimento de APIs com Spring Boot", "Digital Innovation One"},
+    {"JavaScript Moderno", 30, "ES6+ e boas práticas", "Rocketseat"},
+    {"React para Iniciantes", 25, "Componentes, Props e Hooks", "Origamid"},
+    {"C++ Intermediário", 28, "Programação orientada a objetos", "Udemy"},
+    {"Algoritmos", 32, "Lógica de programação e resolução de problemas", "IFBA"},
+    {"Linux Básico", 15, "Comandos e uso do terminal", "Curso em Vídeo"},
+    {"Engenharia de Software", 38, "Requisitos, modelagem e testes", "IFBA"},
+    {"Git e GitHub", 10, "Controle de versão com Git", "Digital Innovation One"},
+    {"Redes de Computadores", 30, "Fundamentos de redes", "Cisco Networking Academy"},
+    {"Segurança da Informação", 22, "Princípios básicos de segurança", "Coursera"}
+};
+
 
     for (Object[] curso : dados) {
         String nomeCurso = curso[0].toString().toLowerCase();
