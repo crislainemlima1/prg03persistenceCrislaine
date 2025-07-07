@@ -5,7 +5,7 @@
 package br.com.ifba;
 
 import br.com.ifba.curso.dao.CursoDAO;
-import br.com.ifba.curso.dao.CursoDAOImpl;
+import br.com.ifba.curso.dao.CursolDAO;
 import br.com.ifba.curso.entity.Curso;
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class CursoSave {
 
     public static void main(String[] args) {
-      CursoDAO dao = new CursoDAOImpl();
+      CursoDAO dao = new CursolDAO();
 
         // criar e salvar novo curso
         Curso novoCurso = new Curso();

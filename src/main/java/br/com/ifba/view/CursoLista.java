@@ -4,6 +4,9 @@
  */
 package br.com.ifba.view;
 
+import br.com.ifba.curso.controller.CursoController;
+import br.com.ifba.curso.entity.Curso;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +20,8 @@ public class CursoLista extends javax.swing.JFrame {
     /**
      * Creates new form Tela
      */
+    private final CursoController controller = new CursoController();
+            
     public CursoLista() {
         initComponents();
         
@@ -24,6 +29,7 @@ public class CursoLista extends javax.swing.JFrame {
         adicionarIconesNasColunas();
         adicionarListenerTabela();
         configurarRenderizadoresDeIcones();
+        carregarTabela();
 
     }
     
@@ -77,6 +83,14 @@ public class CursoLista extends javax.swing.JFrame {
                     int confirmacao = JOptionPane.showConfirmDialog(null, "deseja excluir esse curso?", "confirmacao", JOptionPane.YES_NO_OPTION);
                     if (confirmacao == JOptionPane.YES_OPTION) {
                         ((DefaultTableModel) tabCurso.getModel()).removeRow(linha);
+                        
+                        // excluir o curso do banco de dados
+                           DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
+                            Long id = (Long) modelo.getValueAt(linha, 5); 
+                            Curso curso = controller.buscarPorId(id);
+                            controller.excluirCurso(curso);
+                            carregarTabela();
+                        JOptionPane.showMessageDialog(null, "o curso foi excluido");
                     }
                 } else if (coluna == 5) { // EDITAR
                     
@@ -332,7 +346,36 @@ public class CursoLista extends javax.swing.JFrame {
     modelo.setValueAt(duracao, linha, 1);
     modelo.setValueAt(descricao, linha, 2);
     modelo.setValueAt(plataforma, linha, 3);
+    
+    // atualiza no banco
+    Long id = (Long) modelo.getValueAt(linha, 4); // coluna do ID
+    Curso curso = controller.buscarPorId(id);
+    curso.setNome(nome);
+    curso.setDuracao(duracao);
+    curso.setDescricao(descricao);
+    curso.setPlataforma(plataforma);
+
+    controller.atualizarCurso(curso);
+
 }
+    
+    // carregar os dados dos cursos salvos no banco e exibir na tela
+    private void carregarTabela(){
+        List<Curso> cursos = controller.listarTodos(); // pega a lista de cursos usando o contriller
+        DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
+        modelo.setRowCount(0);
+        
+        for(Curso curso : cursos){ // adiciona cada curso com uma nova linha na tabela
+            modelo.addRow(new Object[]{
+                curso.getId(),
+                curso.getNome(),
+                curso.getDescricao(),
+                curso.getDuracao(),
+                curso.getPlataforma()
+                                
+            });
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

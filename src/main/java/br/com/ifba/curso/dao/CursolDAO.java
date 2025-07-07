@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class CursoDAOImpl implements CursoDAO {
+public class CursolDAO implements CursoDAO {
     
     // cria a fabrica que fornece a conexao com o banco
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("prg03persistenciaPU");
