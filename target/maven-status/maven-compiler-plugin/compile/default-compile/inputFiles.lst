@@ -8,6 +8,8 @@ C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\j
 C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\infrasctructure\dao\GenericlDao.java
 C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\infrastructure\entity\PersistenceEntity.java
 C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\infrastructure\util\ConexaoBD.java
+C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\infrastructure\util\JPAUtil.java
 C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\infrastructure\util\StringUtil.java
+C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\view\CadastrarCurso.java
 C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\view\CursoLista.java
 C:\Users\crisl\OneDrive\Documentos\NetBeansProjects\prg03presistencia\src\main\java\br\com\ifba\view\EditarCurso.java

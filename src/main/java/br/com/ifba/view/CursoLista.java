@@ -25,46 +25,17 @@ public class CursoLista extends javax.swing.JFrame {
     public CursoLista() {
         initComponents();
         
-        popularTabelaComDados();
-        adicionarIconesNasColunas();
-        adicionarListenerTabela();
-        configurarRenderizadoresDeIcones();
         carregarTabela();
-
+        adicionarIconesNasColunas();
+        configurarRenderizadoresDeIcones();
+        adicionarListenerTabela();
+        
     }
     
-    // metados com tabelas reais
-    private void popularTabelaComDados() {
-        DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
-        modelo.setRowCount(0); // limpa a tabela antes de adicionar
-        
-        // exemplo de dados reais
-        Object[][] dados = {
-    {"Java Básico", 30, "Curso introdutório de Java", "IFBA"},
-    {"Python Avançado", 25, "Curso avançado de Python", "Udemy"},
-    {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera"},
-    {"Desenvolvimento Web", 40, "HTML, CSS e JavaScript", "Alura"},
-    {"Estrutura de Dados", 35, "Listas, pilhas, filas e árvores", "IFBA"},
-    {"Java com Spring", 45, "Desenvolvimento de APIs com Spring Boot", "Digital Innovation One"},
-    {"JavaScript Moderno", 30, "ES6+ e boas práticas", "Rocketseat"},
-    {"React para Iniciantes", 25, "Componentes, Props e Hooks", "Origamid"},
-    {"C++ Intermediário", 28, "Programação orientada a objetos", "Udemy"},
-    {"Algoritmos", 32, "Lógica de programação e resolução de problemas", "IFBA"},
-    {"Linux Básico", 15, "Comandos e uso do terminal", "Curso em Vídeo"},
-    {"Engenharia de Software", 38, "Requisitos, modelagem e testes", "IFBA"},
-    {"Git e GitHub", 10, "Controle de versão com Git", "Digital Innovation One"},
-    {"Redes de Computadores", 30, "Fundamentos de redes", "Cisco Networking Academy"},
-    {"Segurança da Informação", 22, "Princípios básicos de segurança", "Coursera"}
-};
 
-        
-        for (Object[] linha : dados) {
-            modelo.addRow(linha);
-        }
-    }
     
     // metados adicinado ns colunas remover e editar
-    private void adicionarIconesNasColunas() {
+    void adicionarIconesNasColunas() {
         DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.setValueAt(new ImageIcon(getClass().getResource("/br/com/ifba/imagens/remover.png.png")), i, 4);
@@ -155,6 +126,7 @@ public class CursoLista extends javax.swing.JFrame {
         lblHomemCrem = new javax.swing.JLabel();
         tabelaCurso = new javax.swing.JScrollPane();
         tabCurso = new javax.swing.JTable();
+        btnNovoCurso = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Cursos");
@@ -162,6 +134,11 @@ public class CursoLista extends javax.swing.JFrame {
         painelSuperior.setBackground(new java.awt.Color(255, 102, 102));
 
         txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         txtButao.setForeground(new java.awt.Color(0, 0, 0));
         txtButao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/pesquisa-de-lupa (1).png"))); // NOI18N
@@ -209,6 +186,13 @@ public class CursoLista extends javax.swing.JFrame {
         });
         tabelaCurso.setViewportView(tabCurso);
 
+        btnNovoCurso.setText("Adicionar");
+        btnNovoCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoCursoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
         painelSuperior.setLayout(painelSuperiorLayout);
         painelSuperiorLayout.setHorizontalGroup(
@@ -222,7 +206,9 @@ public class CursoLista extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(lblHomemCrem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnNovoCurso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtButao)))
                 .addContainerGap(67, Short.MAX_VALUE))
@@ -235,8 +221,10 @@ public class CursoLista extends javax.swing.JFrame {
                     .addComponent(txtButao)
                     .addGroup(painelSuperiorLayout.createSequentialGroup()
                         .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblHomemCrem, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblHomemCrem, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(btnNovoCurso))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(195, 195, 195))
@@ -269,40 +257,66 @@ public class CursoLista extends javax.swing.JFrame {
     DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
     modelo.setRowCount(0); // limpa a tabela antes de filtrar
 
-    // dados
-   Object[][] dados = {
-    {"Java Básico", 30, "Curso introdutório de Java", "IFBA"},
-    {"Python Avançado", 25, "Curso avançado de Python", "Udemy"},
-    {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera"},
-    {"Desenvolvimento Web", 40, "HTML, CSS e JavaScript", "Alura"},
-    {"Estrutura de Dados", 35, "Listas, pilhas, filas e árvores", "IFBA"},
-    {"Java com Spring", 45, "Desenvolvimento de APIs com Spring Boot", "Digital Innovation One"},
-    {"JavaScript Moderno", 30, "ES6+ e boas práticas", "Rocketseat"},
-    {"React para Iniciantes", 25, "Componentes, Props e Hooks", "Origamid"},
-    {"C++ Intermediário", 28, "Programação orientada a objetos", "Udemy"},
-    {"Algoritmos", 32, "Lógica de programação e resolução de problemas", "IFBA"},
-    {"Linux Básico", 15, "Comandos e uso do terminal", "Curso em Vídeo"},
-    {"Engenharia de Software", 38, "Requisitos, modelagem e testes", "IFBA"},
-    {"Git e GitHub", 10, "Controle de versão com Git", "Digital Innovation One"},
-    {"Redes de Computadores", 30, "Fundamentos de redes", "Cisco Networking Academy"},
-    {"Segurança da Informação", 22, "Princípios básicos de segurança", "Coursera"}
+    List<Curso> cursos = controller.listarTodos();
+
+for (Curso curso : cursos) {
+    if (curso.getNome().toLowerCase().contains(textoBusca) ||
+        curso.getDescricao().toLowerCase().contains(textoBusca) ||
+        curso.getPlataforma().toLowerCase().contains(textoBusca)) {
+
+        modelo.addRow(new Object[]{
+            curso.getNome(),
+            curso.getDuracao(),
+            curso.getDescricao(),
+            curso.getPlataforma(),
+            new ImageIcon(getClass().getResource("/br/com/ifba/imagens/remover.png.png")),
+            new ImageIcon(getClass().getResource("/br/com/ifba/imagens/editar.png.png")),
+            curso.getId()
+        });
+    }
+
 };
 
 
-    for (Object[] curso : dados) {
-        String nomeCurso = curso[0].toString().toLowerCase();
-        if (nomeCurso.contains(textoBusca)) {
-            // adiciona novamente as colunas de remover e editar com null
-            Object[] linhaComIcones = {
-                curso[0], curso[1], curso[2], curso[3], null, null
-            };
-            modelo.addRow(linhaComIcones);
-        }
-    }
+    tabCurso.getColumnModel().getColumn(6).setMinWidth(0);
+    tabCurso.getColumnModel().getColumn(6).setMaxWidth(0);
+    tabCurso.getColumnModel().getColumn(6).setWidth(0);
 
     // aecoloca os icones nas colunas
     adicionarIconesNasColunas();
     }//GEN-LAST:event_txtButaoActionPerformed
+
+    private void btnNovoCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoCursoActionPerformed
+        // TODO add your handling code here:
+        CadastrarCurso telaCadastro = new CadastrarCurso(this);
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_btnNovoCursoActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+        String textoBusca = txtBuscar.getText().toLowerCase(); // texto digitado na busca
+        DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
+            modelo.setRowCount(0); // limpa a tabela
+
+            List<Curso> cursos = controller.listarTodos();
+
+                for (Curso curso : cursos) {
+                    if (curso.getNome().toLowerCase().contains(textoBusca) ||
+                        curso.getDescricao().toLowerCase().contains(textoBusca) ||
+                        curso.getPlataforma().toLowerCase().contains(textoBusca)) {
+
+                            modelo.addRow(new Object[]{
+                                curso.getNome(),
+                                curso.getDuracao(),
+                                curso.getDescricao(),
+                                curso.getPlataforma(),
+                                null,
+                                null,
+                                curso.getId()
+                                });
+    }
+}
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,25 +374,27 @@ public class CursoLista extends javax.swing.JFrame {
 }
     
     // carregar os dados dos cursos salvos no banco e exibir na tela
-    private void carregarTabela(){
+    void carregarTabela(){
         List<Curso> cursos = controller.listarTodos(); // pega a lista de cursos usando o contriller
         DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
         modelo.setRowCount(0);
         
         for(Curso curso : cursos){ // adiciona cada curso com uma nova linha na tabela
-            modelo.addRow(new Object[]{
-                curso.getId(),
-                curso.getNome(),
-                curso.getDescricao(),
-                curso.getDuracao(),
-                curso.getPlataforma()
-                                
+           modelo.addRow(new Object[]{
+            curso.getNome(),
+            curso.getDuracao(),
+            curso.getDescricao(),
+            curso.getPlataforma(),
+            null, 
+            null, 
+            curso.getId() 
             });
         }
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNovoCurso;
     private javax.swing.JLabel lblHomemCrem;
     private javax.swing.JPanel painelSuperior;
     private javax.swing.JTable tabCurso;

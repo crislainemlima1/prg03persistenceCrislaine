@@ -10,6 +10,7 @@ package br.com.ifba.curso.dao;
  */
 
 import br.com.ifba.curso.entity.Curso;
+import br.com.ifba.infrastructure.util.JPAUtil;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,11 +19,12 @@ import javax.persistence.Persistence;
 public class CursolDAO implements CursoDAO {
     
     // cria a fabrica que fornece a conexao com o banco
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("prg03persistenciaPU");
+    
      // pega a conexao com o banco de dados
-    private EntityManager getEntityManager(){
-        return emf.createEntityManager();
-    }
+    private EntityManager getEntityManager() {
+    return JPAUtil.getEntityManager();
+}
+
     
     // salvar um novo curso no banco de dados
     public void salvar(Curso curso){
@@ -30,7 +32,9 @@ public class CursolDAO implements CursoDAO {
         try {
             em.getTransaction().begin();
             em.persist(curso); // persiste o objeto
+            System.out.println("Metodo salvar() chamado: " + curso.getNome());
             em.getTransaction().commit();
+            System.out.println("Curso persistido no banco com ID: " + curso.getId());
         }
         catch (Exception e){
             em.getTransaction().rollback(); // desfaz em caso de erro

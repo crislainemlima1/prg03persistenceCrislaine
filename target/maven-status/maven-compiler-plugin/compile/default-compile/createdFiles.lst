@@ -1,9 +1,14 @@
 br\com\ifba\infrasctructure\dao\GenericDao.class
 br\com\ifba\view\EditarCurso$1.class
 br\com\ifba\view\CursoLista$4.class
+br\com\ifba\view\CadastrarCurso$1.class
+br\com\ifba\view\CursoLista$6.class
 br\com\ifba\view\CursoLista$2.class
+br\com\ifba\infrastructure\util\JPAUtil.class
+br\com\ifba\view\CadastrarCurso.class
 br\com\ifba\view\EditarCurso.class
 br\com\ifba\curso\dao\CursolDAO.class
+br\com\ifba\view\CadastrarCurso$3.class
 br\com\ifba\infrastructure\entity\PersistenceEntity.class
 br\com\ifba\view\CursoLista.class
 br\com\ifba\CursoSave.class
@@ -15,6 +20,8 @@ br\com\ifba\view\EditarCurso$2.class
 br\com\ifba\view\CursoLista$3.class
 br\com\ifba\curso\entity\Curso.class
 br\com\ifba\infrastructure\util\ConexaoBD.class
+br\com\ifba\view\CursoLista$7.class
 br\com\ifba\view\CursoLista$1.class
+br\com\ifba\view\CadastrarCurso$2.class
 br\com\ifba\curso\controller\CursoController.class
 br\com\ifba\infrasctructure\dao\GenericlDao.class
