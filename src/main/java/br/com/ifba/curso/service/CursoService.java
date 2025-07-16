@@ -4,52 +4,60 @@
  */
 package br.com.ifba.curso.service;
 
+import br.com.ifba.curso.dao.CursoDAO;
 import br.com.ifba.curso.dao.CursolDAO;
 import br.com.ifba.curso.entity.Curso;
 import br.com.ifba.infrastructure.util.StringUtil;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author crisl
  */
-public class CursoService {
+@Service
+public class CursoService implements ICursoService {
 
     
-    private final CursolDAO dao = new CursolDAO();
     
+    
+    @Autowired
     // salvar curso apos a validaçao de dados obrigatorios
-    public void salvarCurso(Curso curso){
-        if(StringUtil.isNullOrEmpty(curso.getNome()) || !StringUtil.minimoCaracter(curso.getNome(), 3)){
-         throw new RuntimeException("nome invalido"); 
-        }  
+    private CursoDAO dao;
+
+    public void salvarCurso(Curso curso) {
+        if (StringUtil.isNullOrEmpty(curso.getNome()) || !StringUtil.minimoCaracter(curso.getNome(), 3)) {
+            throw new RuntimeException("nome invalido"); 
+        }
         if (StringUtil.isNullOrEmpty(curso.getDescricao())) {
-            throw new RuntimeException("des ricao obtigatorio");
+            throw new RuntimeException("descricao obrigatória");
         }
-
         if (StringUtil.isNullOrEmpty(curso.getPlataforma())) {
-            throw new RuntimeException("plataforma obrigatoria");
+            throw new RuntimeException("plataforma obrigatória");
         }
-
         if (!StringUtil.duracaoValida(curso.getDuracao())) {
-            throw new RuntimeException("duraçao invalida");
+            throw new RuntimeException("duração invalida");
         }
 
         dao.salvar(curso);
-    
-        
-}
-       // todos os tramites de atualizar, buscar por ID, excluir um curso e etc..
-     public void atualizarCurso(Curso curso){
-         dao.atualizar(curso);
-     }
-     public void excluirCurso(Curso curso){
-         dao.excluir(curso);
-     }
-     public Curso buscarPorId(Long id){
-         return dao.buscarPorId(id);
-     }
-     public List<Curso> listarTodos(){
-         return dao.listarTodos();
-     }
+    }
+
+    public void atualizarCurso(Curso curso) {
+        dao.atualizar(curso);
+    }
+
+    public void excluirCurso(Curso curso) {
+        dao.excluir(curso);
+    }
+
+    public Curso buscarPorId(Long id) {
+        return dao.buscarPorId(id);
+    }
+
+    public List<Curso> listarTodos() {
+        return dao.listarTodos();
+    }
+
+
 }

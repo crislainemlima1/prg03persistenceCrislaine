@@ -7,15 +7,21 @@ package br.com.ifba.curso.controller;
 import br.com.ifba.curso.entity.Curso;
 import br.com.ifba.curso.service.CursoService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import br.com.ifba.curso.service.ICursoService;
 
 /**
  *
  * @author crisl
  */
+
+@Component
 public class CursoController {
 
 
-    private final CursoService service = new CursoService();
+    @Autowired
+    private ICursoService service;
 
     public void salvarCurso(Curso curso) {
         service.salvarCurso(curso);
@@ -34,7 +40,9 @@ public class CursoController {
     }
 
     public List<Curso> listarTodos() {
-        return service.listarTodos(); 
+        return service.listarTodos();
     }
+
+
 }
 

@@ -4,12 +4,13 @@
  */
 package br.com.ifba.curso.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "curso")
 public class Curso implements Serializable {
     
-    @Id // chave primaria 
+    @Id// chave primaria 
     @GeneratedValue(strategy = GenerationType.IDENTITY) //configura como o id sera gerado
     
     private Long id;
