@@ -6,6 +6,7 @@ package br.com.ifba.curso.view;
 
 import br.com.ifba.curso.controller.CursoController;
 import br.com.ifba.curso.entity.Curso;
+import jakarta.annotation.PostConstruct;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,12 +30,16 @@ public class CursoLista extends javax.swing.JFrame {
     public CursoLista() {
         initComponents();
         
+    }
+    
+     @PostConstruct
+    public void inicializarDepoisDoSpring() {
         carregarTabela();
         adicionarIconesNasColunas();
         configurarRenderizadoresDeIcones();
         adicionarListenerTabela();
-        
     }
+
     
 
     

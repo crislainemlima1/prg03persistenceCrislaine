@@ -2,7 +2,6 @@ br\com\ifba\curso\view\CursoLista$7.class
 br\com\ifba\infrasctructure\dao\GenericDao.class
 br\com\ifba\curso\view\CadastrarCurso$1.class
 br\com\ifba\curso\view\CadastrarCurso.class
-br\com\ifba\infrastructure\util\JPAUtil.class
 br\com\ifba\curso\view\CadastrarCurso$3.class
 br\com\ifba\curso\view\CursoLista$3.class
 br\com\ifba\curso\view\EditarCurso$1.class
@@ -18,7 +17,6 @@ br\com\ifba\curso\view\CursoLista.class
 br\com\ifba\curso\service\CursoService.class
 br\com\ifba\curso\entity\Curso.class
 br\com\ifba\curso\service\ICursoService.class
-br\com\ifba\infrastructure\util\ConexaoBD.class
 br\com\ifba\curso\view\CursoLista$4.class
 br\com\ifba\curso\view\EditarCurso$2.class
 br\com\ifba\curso\view\CursoLista$5.class
