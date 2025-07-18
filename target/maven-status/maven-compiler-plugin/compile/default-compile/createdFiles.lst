@@ -1,15 +1,13 @@
 br\com\ifba\curso\view\CursoLista$7.class
-br\com\ifba\infrasctructure\dao\GenericDao.class
 br\com\ifba\curso\view\CadastrarCurso$1.class
 br\com\ifba\curso\view\CadastrarCurso.class
 br\com\ifba\curso\view\CadastrarCurso$3.class
 br\com\ifba\curso\view\CursoLista$3.class
 br\com\ifba\curso\view\EditarCurso$1.class
-br\com\ifba\curso\dao\CursolDAO.class
 br\com\ifba\infrastructure\entity\PersistenceEntity.class
 br\com\ifba\CursoSave.class
+br\com\ifba\curso\repository\CursoRepository.class
 br\com\ifba\curso\view\CursoLista$6.class
-br\com\ifba\curso\dao\CursoDAO.class
 br\com\ifba\curso\view\EditarCurso.class
 br\com\ifba\infrastructure\util\StringUtil.class
 br\com\ifba\curso\view\CursoLista$1.class
@@ -24,4 +22,3 @@ br\com\ifba\curso\view\CadastrarCurso$2.class
 br\com\ifba\curso\view\CursoLista$2.class
 br\com\ifba\Prg03StringApplication.class
 br\com\ifba\curso\controller\CursoController.class
-br\com\ifba\infrasctructure\dao\GenericlDao.class

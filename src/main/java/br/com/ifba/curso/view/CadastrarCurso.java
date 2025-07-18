@@ -79,7 +79,7 @@ public CadastrarCurso(CursoLista cursoLista) {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 102, 102));
-        jLabel5.setText("                ADICIONAR CURSO");
+        jLabel5.setText("        ADICIONAR CURSO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

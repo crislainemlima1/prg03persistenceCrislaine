@@ -4,9 +4,9 @@
  */
 package br.com.ifba.curso.service;
 
-import br.com.ifba.curso.dao.CursoDAO;
-import br.com.ifba.curso.dao.CursolDAO;
+
 import br.com.ifba.curso.entity.Curso;
+import br.com.ifba.curso.repository.CursoRepository;
 import br.com.ifba.infrastructure.util.StringUtil;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,45 +19,46 @@ import org.springframework.stereotype.Service;
 @Service
 public class CursoService implements ICursoService {
 
-    
-    
-    
-    @Autowired
-    // salvar curso apos a validaçao de dados obrigatorios
-    private CursoDAO dao;
+     // salvar curso apos a validaçao de dados obrigatorios
+ @Autowired
+    private CursoRepository cursoRepository;
 
+    @Override
     public void salvarCurso(Curso curso) {
         if (StringUtil.isNullOrEmpty(curso.getNome()) || !StringUtil.minimoCaracter(curso.getNome(), 3)) {
-            throw new RuntimeException("nome invalido"); 
+            throw new RuntimeException("nome inválido");
         }
         if (StringUtil.isNullOrEmpty(curso.getDescricao())) {
-            throw new RuntimeException("descricao obrigatória");
+            throw new RuntimeException("descrição obrigatória");
         }
         if (StringUtil.isNullOrEmpty(curso.getPlataforma())) {
             throw new RuntimeException("plataforma obrigatória");
         }
         if (!StringUtil.duracaoValida(curso.getDuracao())) {
-            throw new RuntimeException("duração invalida");
+            throw new RuntimeException("duração inválida");
         }
 
-        dao.salvar(curso);
+        cursoRepository.save(curso);
     }
 
+    @Override
     public void atualizarCurso(Curso curso) {
-        dao.atualizar(curso);
+        cursoRepository.save(curso); // serve pra atualizar também
     }
 
+    @Override
     public void excluirCurso(Curso curso) {
-        dao.excluir(curso);
+        cursoRepository.delete(curso);
     }
 
+    @Override
     public Curso buscarPorId(Long id) {
-        return dao.buscarPorId(id);
+        return cursoRepository.findById(id).orElse(null);
     }
 
+    @Override
     public List<Curso> listarTodos() {
-        return dao.listarTodos();
+        return cursoRepository.findAll();
     }
-
-
 }
+
