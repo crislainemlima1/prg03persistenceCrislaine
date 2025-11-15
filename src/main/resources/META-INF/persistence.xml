@@ -11,12 +11,16 @@
     <class>br.com.ifba.entity.Curso</class>
 
     <properties>
+      <!-- Conexão com MySQL -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd_curso?useSSL=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.password" value="230672"/>
+      <property name="javax.persistence.jdbc.password" value="123456"/>
 
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+      <!-- Dialeto do Hibernate para MySQL 8 -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+
+      <!-- Configurações adicionais -->
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>

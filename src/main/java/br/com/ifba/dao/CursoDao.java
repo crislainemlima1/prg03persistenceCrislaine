@@ -11,12 +11,17 @@ public class CursoDao {
     private final EntityManagerFactory emf;
 
     public CursoDao() {
-        emf = Persistence.createEntityManagerFactory("cursoPU"); // deve bater com o nome no persistence.xml
+        emf = Persistence.createEntityManagerFactory("cursoPU"); 
     }
 
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+
+    /**
+     * Salva um novo curso no banco de dados.
+     * Inicia uma transação, persiste o objeto e confirma a transação.
+     */
 
     public void salvar(Curso curso) {
         EntityManager em = getEntityManager();
@@ -29,6 +34,11 @@ public class CursoDao {
         }
     }
 
+    /**
+     * Atualiza um curso existente no banco de dados.
+     * Usa o método merge para aplicar as alterações e confirma a transação.
+     */
+
     public void atualizar(Curso curso) {
         EntityManager em = getEntityManager();
         try {
@@ -39,6 +49,10 @@ public class CursoDao {
             em.close();
         }
     }
+/**
+     * Exclui um curso do banco de dados.
+     * Primeiro busca o curso pelo ID, depois remove se existir.
+     */
 
     public void excluir(Curso curso) {
         EntityManager em = getEntityManager();
@@ -54,6 +68,11 @@ public class CursoDao {
         }
     }
 
+    /**
+     * Busca um curso no banco de dados pelo seu ID.
+     * Retorna o objeto Curso correspondente ou null se não encontrar.
+     */
+
     public Curso buscarPorId(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -62,6 +81,11 @@ public class CursoDao {
             em.close();
         }
     }
+
+    /**
+     * Retorna uma lista com todos os cursos cadastrados no banco.
+     * Executa uma consulta JPQL simples.
+     */
 
     public List<Curso> listarTodos() {
         EntityManager em = getEntityManager();
