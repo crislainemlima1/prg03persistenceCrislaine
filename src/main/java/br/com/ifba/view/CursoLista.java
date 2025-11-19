@@ -19,7 +19,8 @@ public class CursoLista extends javax.swing.JFrame {
     public CursoLista() {
         initComponents();
         
-        popularTabelaComDados();
+       // popularTabelaComDados();
+       atualizarTabelaComBanco();
         adicionarIconesNasColunas();
         adicionarListenerTabela();
         configurarRenderizadoresDeIcones();
@@ -45,7 +46,7 @@ public class CursoLista extends javax.swing.JFrame {
     }
 }
 
-    
+    /**
     // metados com tabelas reais
     private void popularTabelaComDados() {
         DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
@@ -62,6 +63,8 @@ public class CursoLista extends javax.swing.JFrame {
             modelo.addRow(linha);
         }
     }
+    */
+    
     
     // metados adicinado ns colunas remover e editar
     private void adicionarIconesNasColunas() {

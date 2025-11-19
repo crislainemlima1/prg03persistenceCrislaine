@@ -42,6 +42,7 @@ public class Curso implements Serializable {
         this.plataforma = plataforma;
     }
 
+    // gettes e sttes
     public Long getId() {
         return id;
     }
