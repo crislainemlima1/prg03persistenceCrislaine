@@ -8,6 +8,7 @@ br\com\ifba\view\CursoLista$6.class
 br\com\ifba\dao\CursolDao.class
 br\com\ifba\view\CursoLista$2.class
 br\com\ifba\entity\Curso.class
+br\com\ifba\Prg03PersistenceApplication.class
 br\com\ifba\view\AddCurso$3.class
 br\com\ifba\conexao\ConexaoBD.class
 br\com\ifba\conexao\ConexaoBD$ConexaoDB.class
@@ -22,6 +23,7 @@ br\com\ifba\service\ICursoService.class
 br\com\ifba\view\AddCurso$2.class
 br\com\ifba\dao\CursoDao.class
 br\com\ifba\view\CursoLista$3.class
+br\com\ifba\repository\CursoRepository.class
 br\com\ifba\view\CursoLista$7.class
 br\com\ifba\infrastructure\dao\GenericDao.class
 br\com\ifba\view\CursoLista$1.class

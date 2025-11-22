@@ -4,27 +4,35 @@
 
 package br.com.ifba;
 
-import br.com.ifba.dao.CursoDao;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.ifba.entity.Curso;
+import br.com.ifba.repository.CursoRepository;
 
 /**
  *
  * @author crisl
  */
-public class CursoSave {
+@Component
+public class CursoSave implements CommandLineRunner {
 
-    public static void main(String[] args) {
-        System.out.println("curso salvo");
-        
-        CursoDao dao = new CursoDao();
+    @Autowired
+    private CursoRepository repository;
 
-    Curso c = new Curso();
-    c.setNome("Teste Curso");
-    c.setDuracao(10);
-    c.setDescricao("Curso de Teste");
-    c.setPlataforma("Online");
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Salvando curso via Spring Boot...");
 
-    dao.salvar(c);
-    System.out.println("Curso salvo com id: " + c.getId());
+        Curso c = new Curso();
+        c.setNome("Teste Curso");
+        c.setDuracao(10);
+        c.setDescricao("Curso de Teste");
+        c.setPlataforma("Online");
+
+        repository.save(c);
+
+        System.out.println("Curso salvo com id: " + c.getId());
     }
 }

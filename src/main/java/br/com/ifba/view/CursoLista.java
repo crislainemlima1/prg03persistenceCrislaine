@@ -174,7 +174,7 @@ public class CursoLista extends javax.swing.JFrame {
             }
         });
 
-        lblHomemCrem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/perfil-de-usuario.png"))); // NOI18N
+        lblHomemCrem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/lista-de-controle (1).png"))); // NOI18N
 
         tabelaCurso.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -225,43 +225,35 @@ public class CursoLista extends javax.swing.JFrame {
             .addGroup(painelSuperiorLayout.createSequentialGroup()
                 .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelSuperiorLayout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(lblHomemCrem)
                         .addGap(18, 18, 18)
-                        .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelSuperiorLayout.createSequentialGroup()
-                        .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(painelSuperiorLayout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(btnAdicionarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelSuperiorLayout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(lblHomemCrem)))
-                        .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelSuperiorLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel1))
-                            .addGroup(painelSuperiorLayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtButao)))))
+                        .addComponent(jLabel1))
+                    .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelSuperiorLayout.createSequentialGroup()
+                            .addGap(55, 55, 55)
+                            .addComponent(btnAdicionarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtButao))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelSuperiorLayout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(312, Short.MAX_VALUE))
         );
         painelSuperiorLayout.setVerticalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSuperiorLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdicionarCurso)
-                            .addComponent(txtBuscar)
-                            .addComponent(txtButao)))
-                    .addGroup(painelSuperiorLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblHomemCrem)
-                            .addComponent(jLabel1))
-                        .addGap(0, 80, Short.MAX_VALUE)))
+                .addGap(13, 13, 13)
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblHomemCrem)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdicionarCurso)
+                    .addComponent(txtBuscar)
+                    .addComponent(txtButao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tabelaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(192, 192, 192))
@@ -382,4 +374,5 @@ public class CursoLista extends javax.swing.JFrame {
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JButton txtButao;
     // End of variables declaration//GEN-END:variables
+
 }

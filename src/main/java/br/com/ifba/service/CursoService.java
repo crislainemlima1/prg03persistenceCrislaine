@@ -21,7 +21,7 @@ public class CursoService implements ICursoService{
      @Override
     public void salvarCurso(Curso curso) {
         if (StringUtil.isEmpty(curso.getNome())) {
-            throw new IllegalArgumentException("Nome do curso não pode ser vazio.");
+            throw new IllegalArgumentException("Nome do curso nao pode ser vazio.");
         }
         dao.salvar(curso);
     }
