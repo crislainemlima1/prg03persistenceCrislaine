@@ -5,6 +5,7 @@
 package br.com.ifba.repository;
 
 import br.com.ifba.entity.Curso;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,6 +13,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author crisl
  */
 public interface CursoRepository extends JpaRepository<Curso, Long> {
-    // adicionar coisas personalizadas depiis...
+  
+    // Busca cursos cujo nome contenha o texto, ignorando maiúsculas/minúsculas
+    List<Curso> findByNomeContainingIgnoreCase(String nome);
+    
+    // Busca cursos pela plataforma
+    List<Curso> findByPlataformaContainingIgnoreCase(String plataforma);
+
 }
 

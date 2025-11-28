@@ -166,8 +166,8 @@ public class AddCurso extends javax.swing.JFrame {
         curso.setDescricao(txtDescricao.getText());
         curso.setPlataforma(txtPlataforma.getText());
 
-        br.com.ifba.dao.CursoDao dao = new br.com.ifba.dao.CursoDao();
-        dao.salvar(curso);
+        br.com.ifba.service.CursoService service =
+        br.com.ifba.Prg03PersistenceApplication.context.getBean(br.com.ifba.service.CursoService.class);
 
         javax.swing.JOptionPane.showMessageDialog(this, 
             "Curso salvo com sucesso!",

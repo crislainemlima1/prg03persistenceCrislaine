@@ -4,18 +4,24 @@
  */
 package br.com.ifba.service;
 
-import br.com.ifba.dao.CursoDao;
+
 import br.com.ifba.entity.Curso;
+import br.com.ifba.repository.CursoRepository;
 import br.com.ifba.util.StringUtil;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author crisl
  */
+@Service
 public class CursoService implements ICursoService{
     
-    private final CursoDao dao = new CursoDao();
+    @Autowired
+    private CursoRepository repository;
+
     
     // salva o curso no banco com validação para ver se esta preenchido
      @Override
@@ -23,32 +29,39 @@ public class CursoService implements ICursoService{
         if (StringUtil.isEmpty(curso.getNome())) {
             throw new IllegalArgumentException("Nome do curso nao pode ser vazio.");
         }
-        dao.salvar(curso);
+       repository.save(curso);
     }
 
     // atualiza os dados do curso no banco
     @Override
     public void atualizarCurso(Curso curso) {
-        dao.atualizar(curso);
+       repository.save(curso);
     }
 
     // exclui o curso do banco
     @Override
     public void excluirCurso(Curso curso) {
-        dao.excluir(curso);
+        repository.delete(curso);
     }
 
     // retorna a lista de todos os cursos cadstrado
     @Override
     public List<Curso> listarCursos() {
-        return dao.listarTodos();
+        return repository.findAll();
     }
 
     // busca por ID
     @Override
     public Curso buscarPorId(Long id) {
-        return dao.buscarPorId(id);
+        return repository.findById(id).orElse(null);
     }
 
+    public List<Curso> buscarPorNome(String nome) {
+        return repository.findByNomeContainingIgnoreCase(nome);
+    }
+    
+    public List<Curso> buscarPorPlataforma(String plataforma) {
+        return repository.findByNomeContainingIgnoreCase(plataforma);
+    }
     
 }

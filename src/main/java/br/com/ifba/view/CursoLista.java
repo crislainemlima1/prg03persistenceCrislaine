@@ -31,8 +31,8 @@ public class CursoLista extends javax.swing.JFrame {
     DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
     modelo.setRowCount(0); // limpa a tabela
 
-    br.com.ifba.dao.CursoDao dao = new br.com.ifba.dao.CursoDao();
-    java.util.List<br.com.ifba.entity.Curso> cursos = dao.listarTodos();
+    br.com.ifba.service.CursoService service = new br.com.ifba.service.CursoService();
+    java.util.List<br.com.ifba.entity.Curso> cursos = service.listarCursos();
 
     for (br.com.ifba.entity.Curso curso : cursos) {
         modelo.addRow(new Object[]{
@@ -85,7 +85,24 @@ public class CursoLista extends javax.swing.JFrame {
                 if (coluna == 4) { // REMOVER
                     int confirmacao = JOptionPane.showConfirmDialog(null, "deseja excluir esse curso?", "confirmacao", JOptionPane.YES_NO_OPTION);
                     if (confirmacao == JOptionPane.YES_OPTION) {
-                        ((DefaultTableModel) tabCurso.getModel()).removeRow(linha);
+                        // Pega o service do Spring
+                br.com.ifba.service.CursoService service =
+                br.com.ifba.Prg03PersistenceApplication.context.getBean(br.com.ifba.service.CursoService.class);
+
+                    // Monta o objeto curso a partir da linha selecionada
+                br.com.ifba.entity.Curso curso = new br.com.ifba.entity.Curso();
+                curso.setNome(tabCurso.getValueAt(linha, 0).toString());
+                curso.setDuracao(Integer.parseInt(tabCurso.getValueAt(linha, 1).toString()));
+                curso.setDescricao(tabCurso.getValueAt(linha, 2).toString());
+                curso.setPlataforma(tabCurso.getValueAt(linha, 3).toString());
+
+                // Exclui do banco
+                service.excluirCurso(curso);
+
+                // Remove da tabela
+                ((DefaultTableModel) tabCurso.getModel()).removeRow(linha);
+
+                JOptionPane.showMessageDialog(null, "Curso removido com sucesso!");
                     }
                 } else if (coluna == 5) { // EDITAR
                     
@@ -282,29 +299,36 @@ public class CursoLista extends javax.swing.JFrame {
     // botao com os seus comandos
     private void txtButaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtButaoActionPerformed
         
-    String textoBusca = txtBuscar.getText().toLowerCase(); // texto digitado na busca
+    String textoBusca = txtBuscar.getText();
+
     DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
-    modelo.setRowCount(0); // limpa a tabela antes de filtrar
+    modelo.setRowCount(0); // limpa a tabela
 
-    // dados
-    Object[][] dados = {
-        {"Java Básico", 30, "Curso introdutório de Java", "IFBA"},
-        {"Python Avançado", 25, "Curso avançado de Python", "Udemy"},
-        {"Banco de Dados", 20, "Curso de SQL e modelagem", "Coursera"}
-    };
+    br.com.ifba.service.CursoService service =
+        br.com.ifba.Prg03PersistenceApplication.context.getBean(br.com.ifba.service.CursoService.class);
 
-    for (Object[] curso : dados) {
-        String nomeCurso = curso[0].toString().toLowerCase();
-        if (nomeCurso.contains(textoBusca)) {
-            // adiciona novamente as colunas de remover e editar com null
-            Object[] linhaComIcones = {
-                curso[0], curso[1], curso[2], curso[3], null, null
-            };
-            modelo.addRow(linhaComIcones);
-        }
+    // Busca por nome
+    java.util.List<br.com.ifba.entity.Curso> cursosPorNome = service.buscarPorNome(textoBusca);
+
+    // Busca por plataforma
+    java.util.List<br.com.ifba.entity.Curso> cursosPorPlataforma = service.buscarPorPlataforma(textoBusca);
+
+    // Junta os resultados (sem duplicar)
+    java.util.Set<br.com.ifba.entity.Curso> cursos = new java.util.HashSet<>();
+    cursos.addAll(cursosPorNome);
+    cursos.addAll(cursosPorPlataforma);
+
+    for (br.com.ifba.entity.Curso curso : cursos) {
+        modelo.addRow(new Object[]{
+            curso.getNome(),
+            curso.getDuracao(),
+            curso.getDescricao(),
+            curso.getPlataforma(),
+            new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/remover.png.png")),
+            new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/imagens/editar.png.png"))
+        });
     }
 
-    // aecoloca os icones nas colunas
     adicionarIconesNasColunas();
     }//GEN-LAST:event_txtButaoActionPerformed
 

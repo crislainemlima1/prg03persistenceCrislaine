@@ -1,11 +1,6 @@
-C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\conexao\ConexaoBD.java
 C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\controller\CursoController.java
 C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\CursoSave.java
-C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\dao\CursoDao.java
-C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\dao\CursolDao.java
 C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\entity\Curso.java
-C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\infrastructure\dao\GenericDao.java
-C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\infrastructure\dao\IGenericDao.java
 C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\Prg03PersistenceApplication.java
 C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\repository\CursoRepository.java
 C:\Users\crisl\OneDrive\Documentos\prg03persistenceCrislaine\src\main\java\br\com\ifba\service\CursoService.java

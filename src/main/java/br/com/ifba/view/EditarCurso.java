@@ -24,15 +24,19 @@ public class EditarCurso extends javax.swing.JFrame {
     private final CursoLista telaPrincipal;
     private final int linhaSelecionada;
     
-  public EditarCurso(CursoLista telaPrincipal, int linhaSelecionada, String nome, int duracao, String descricao, String plataforma) {
+    
+  public EditarCurso(CursoLista telaPrincipal, int linhaSelecionada,
+                   String nome, int duracao, String descricao, String plataforma) {
     initComponents();
+    this.telaPrincipal = telaPrincipal;
+    this.linhaSelecionada = linhaSelecionada;
+
     txtCurso.setText(nome);
     txtDuracao.setText(String.valueOf(duracao));
     txtDescricao.setText(descricao);
     txtPlataforma.setText(plataforma);
 
-    this.telaPrincipal = telaPrincipal;
-    this.linhaSelecionada = linhaSelecionada;
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 }
 
    
@@ -126,19 +130,29 @@ public class EditarCurso extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
        
-        // construtores
-    String nome = txtCurso.getText();
-    int duracao = Integer.parseInt(txtDuracao.getText());
-    String descricao = txtDescricao.getText();
-    String plataforma = txtPlataforma.getText(); 
-    
-    telaPrincipal.atualizarCurso(linhaSelecionada, nome, duracao, descricao, plataforma);
-    
-    // atualizar no banco de dados 
-    JOptionPane.showMessageDialog(this, "o curso foi atualizado");
+       try {
+        br.com.ifba.entity.Curso curso = new br.com.ifba.entity.Curso();
+        curso.setNome(txtCurso.getText());
+        curso.setDuracao(Integer.parseInt(txtDuracao.getText()));
+        curso.setDescricao(txtDescricao.getText());
+        curso.setPlataforma(txtPlataforma.getText());
 
-    // fechar a janela
-    dispose();
+        br.com.ifba.service.CursoService service =
+            br.com.ifba.Prg03PersistenceApplication.context.getBean(br.com.ifba.service.CursoService.class);
+
+        service.atualizarCurso(curso);
+
+        if (telaPrincipal != null) {
+            telaPrincipal.atualizarTabelaComBanco();
+        }
+
+        JOptionPane.showMessageDialog(this, "Curso atualizado com sucesso!");
+        dispose();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erro ao atualizar curso: " + e.getMessage(),
+                "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCursoActionPerformed

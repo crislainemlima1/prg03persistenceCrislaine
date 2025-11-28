@@ -9,9 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.swing.SwingUtilities;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class Prg03PersistenceApplication {
+
+    public static ApplicationContext context;
 
     public static void main(String[] args) {
       
