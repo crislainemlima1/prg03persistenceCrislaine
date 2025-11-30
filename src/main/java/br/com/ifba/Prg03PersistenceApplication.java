@@ -18,9 +18,13 @@ public class Prg03PersistenceApplication {
 
     public static void main(String[] args) {
       
-        SpringApplication.run(Prg03PersistenceApplication.class, args);
-        SwingUtilities.invokeLater(() -> {
+      // inicializa o Spring Boot e guarda o contexto
+        context = SpringApplication.run(Prg03PersistenceApplication.class, args);
+
+        // abre a tela Swing depois que o Spring subir
+        javax.swing.SwingUtilities.invokeLater(() -> {
             new CursoLista().setVisible(true);
         });
+
     }
 }

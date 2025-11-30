@@ -31,7 +31,9 @@ public class CursoLista extends javax.swing.JFrame {
     DefaultTableModel modelo = (DefaultTableModel) tabCurso.getModel();
     modelo.setRowCount(0); // limpa a tabela
 
-    br.com.ifba.service.CursoService service = new br.com.ifba.service.CursoService();
+   br.com.ifba.service.CursoService service =
+    br.com.ifba.Prg03PersistenceApplication.context.getBean(br.com.ifba.service.CursoService.class);
+   
     java.util.List<br.com.ifba.entity.Curso> cursos = service.listarCursos();
 
     for (br.com.ifba.entity.Curso curso : cursos) {

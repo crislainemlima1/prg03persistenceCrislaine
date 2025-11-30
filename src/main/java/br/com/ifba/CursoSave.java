@@ -26,13 +26,13 @@ public class CursoSave implements CommandLineRunner {
         System.out.println("Salvando curso via Spring Boot...");
 
         Curso c = new Curso();
-        c.setNome("Teste Curso");
-        c.setDuracao(10);
-        c.setDescricao("Curso de Teste");
-        c.setPlataforma("Online");
+      //  c.setNome("Teste Curso");
+       // c.setDuracao(10);
+      //  c.setDescricao("Curso de Teste");
+       // c.setPlataforma("Online");
 
         repository.save(c);
 
-        System.out.println("Curso salvo com id: " + c.getId());
+       // System.out.println("Curso salvo com id: " + c.getId());
     }
 }

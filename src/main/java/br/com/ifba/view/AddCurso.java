@@ -16,12 +16,18 @@ public class AddCurso extends javax.swing.JFrame {
     public AddCurso(CursoLista cursoLista) {
         initComponents();
         this.cursoLista = cursoLista;
+        
+          setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     public AddCurso() {
         initComponents();
         
         this.cursoLista = null;
+        
+          setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**
@@ -159,38 +165,38 @@ public class AddCurso extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-         try {
+          try {
         br.com.ifba.entity.Curso curso = new br.com.ifba.entity.Curso();
         curso.setNome(txtCurso.getText());
         curso.setDuracao(Integer.parseInt(txtDuracao.getText()));
         curso.setDescricao(txtDescricao.getText());
         curso.setPlataforma(txtPlataforma.getText());
 
+        // chama o service para salvar
         br.com.ifba.service.CursoService service =
-        br.com.ifba.Prg03PersistenceApplication.context.getBean(br.com.ifba.service.CursoService.class);
+            br.com.ifba.Prg03PersistenceApplication.context.getBean(br.com.ifba.service.CursoService.class);
+        service.salvarCurso(curso);
 
+        // atualiza a lista, se a tela CursoLista foi passada
+        if (cursoLista != null) {
+    cursoLista.atualizarTabelaComBanco();
+}
         javax.swing.JOptionPane.showMessageDialog(this, 
             "Curso salvo com sucesso!",
             "Sucesso", 
             javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        
-        if (cursoLista != null) {
-        cursoLista.atualizarTabelaComBanco(); // atualiza a tabela da outra tela
-    }
 
-
-        txtCurso.setText("");
-        txtDuracao.setText("");
-        txtDescricao.setText("");
-        txtPlataforma.setText("");
+        // fecha a tela após salvar
+        dispose();
 
     } catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(this, 
-            "Erro ao salvar o curso: " + e.getMessage(), 
+            "Erro ao salvar curso: " + e.getMessage(),
             "Erro", 
             javax.swing.JOptionPane.ERROR_MESSAGE);
-        
     }
+
+
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 

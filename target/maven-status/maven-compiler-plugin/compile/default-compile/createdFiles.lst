@@ -13,6 +13,7 @@ br\com\ifba\view\EditarCurso.class
 br\com\ifba\util\StringUtil.class
 br\com\ifba\view\CursoLista.class
 br\com\ifba\CursoSave.class
+br\com\ifba\entity\Curso$CursoBuilder.class
 br\com\ifba\view\CursoLista$5.class
 br\com\ifba\view\EditarCurso$2.class
 br\com\ifba\service\ICursoService.class
